@@ -13,7 +13,11 @@ router.get('/', function (req, res) {
 router.get('/rd/:link', function (req, res) {
   var link = req.params.link;
   urlModel.findOne({ shorten: link }, function (err, shortURL) {
-    res.redirect(shortURL.url);
+    if(shortURL){
+      res.redirect(shortURL.url);
+    }else{
+      res.redirect("/404");
+    }
   })
 });
 

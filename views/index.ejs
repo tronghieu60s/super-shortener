@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Super Shortener</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -74,8 +74,8 @@
                         </div>
                         <div class="form-inline mt-2">
                             <%- captcha %>
-                          <input type="text"
-                            class="form-control" name="type_captcha" id="" aria-describedby="helpId" placeholder="Type Captcha Here...">
+                          <input autocomplete="off" type="text"
+                            class="form-control w-50" name="type_captcha" id="" aria-describedby="helpId" placeholder="Type Captcha Here...">
                         </div>
                     </form>
                     <label for="">Result</label>
@@ -93,9 +93,8 @@
             <%if(qrcode!=''){ %><div class=" col-md-5">
                     <div class="shorten-block qrcode wow slideInRight">
                         <img id="qrcode-shorturl" src="<%= qrcode %>" alt="">
-                        <p class="shorten-alert">Chúc mừng! URL của bạn đã được rút gọn thành công. Bạn có thể chia sẻ
-                            nó
-                            copy liên kết bên dưới<br>Tải mã QR để chia sẻ nhanh hơn!</p>
+                        <p class="shorten-alert">Congratulations! Your URL has been shortened successfully.<br>
+                            Download QR codes for faster sharing!</p>
                     </div>
                 </div>
                 <%}%>

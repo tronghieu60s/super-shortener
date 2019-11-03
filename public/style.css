@@ -9,6 +9,25 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+._404-text {
+    color: #fff;
+    font-size: 1.5em;
+}
+
+._404-page {
+    font-size: 7em;
+    color: #fff;
+    font-weight: 900;
+}
+
+._404 {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .form-inline .form-control {color: #fff;background-color: #303339;border-color: #000;margin-left: 10px;}
 
 
@@ -121,5 +140,6 @@ input.form-control:focus {
 }
 
 body,html {
+    height: 100%;
     background-color: hsla(223, 7%, 17%, 1);
 }
