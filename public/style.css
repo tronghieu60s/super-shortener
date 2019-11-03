@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'Whitney-Semibold Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Whitney-Semibold Regular'), url('whitneysemibold.woff') format('woff');
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-inline .form-control {color: #fff;background-color: #303339;border-color: #000;margin-left: 10px;}
+
+
+select.form-control:focus {
+    box-shadow: none;
+}
+
+#shorten-popup {background-color: #343a40c4!important;}
+
+.shorten-setting {
+    display: inline-block;
+    float: right;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.shorten-setting:hover {color: hsla(0, 0%, 81%, 1);}
+
+.shorten-alert {
+    display: inline-block;
+    background-color: #4FD69C;
+    color: #fff;
+    padding: 12px 25px;
+    margin-bottom: 0;
+}
+
+#qrcode-shorturl {
+    width: 38%;
+    cursor: pointer;
+}
+
+.shorten-block button.btn {
+    background-color: #7889E8;
+}
+
+.shorten-block button.btn:hover {
+    background-color: hsla(231, 71%, 64%, 0.99);
+}
+
+.name-sologan {
+    color: #72767d;
+    margin-left: 20px;
+}
+
+.shorten-title {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.shorten-block {
+    background-color: #36393f;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+    border-radius: 5px;
+    padding: 2em;
+    margin-top: 1em;
+}
+
+.shorten-block.qrcode {
+    display: flex;
+}
+
+.shorten-block .form-block input {
+    color: #fff;
+    background-color: #303339;
+}
+
+.shorten-block .form-block {
+    border-color: #000 !important;
+}
+
+.shorten-block label {
+    font-weight: 600;
+    color: #72767d;
+    margin-top: 10px;
+    display: inherit;
+}
+
+button.btn:focus {
+    box-shadow: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+}
+
+.icon-copy {
+    font-size: 25px;
+    line-height: 38px;
+    color: #fff;
+    padding: 0 14px;
+    background-color: #F75676;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.icon-copy:hover {
+    background-color: hsla(348, 91%, 57%, 1);
+}
+
+.name-logo {
+    font-size: 2em;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+
+body,html {
+    background-color: hsla(223, 7%, 17%, 1);
+}

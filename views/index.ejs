@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS, Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 my-5">
+                <div class="name-logo wow fadeIn">Super Shortener</div>
+                <div class="name-sologan wow bounceInUp">Shorten URLs using invisible spaces.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <div class="shorten-block wow <%if(qrcode==''){ %>bounceInDown<%}else{%>slideInLeft<%}%>">
+                    <form action="/shorten" method="get">
+                        <div class="shorten-title">Shorten a URL</div>
+                        <div class="shorten-setting" data-toggle="modal" data-target="#shorten-popup"><i class="fa fa-cog" aria-hidden="true"></i></div>
+                        <!-- Modal Popup Setting -->
+                        <div class="modal fade bg-dark" id="shorten-popup" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-uppercase">Setting Link</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                        <label for="">Character Length:</label>
+                                        <select class="form-control form-control-sm ml-2" name="charlength" id="" val>
+                                            <option selected="selected" value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-inline mt-2">
+                                      <label for="">Shortened Link Mode:</label>
+                                      <select class="form-control form-control-sm ml-2" name="linkmode" id="">
+                                        <option selected="selected" value="1">Zero Width Character</option>
+                                        <option value="2">Number</option>
+                                        <option value="3">Letters and numbers</option>
+                                      </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="<%if(err!=''){%>text-danger<%}%>" for="">Long URL to shorten<%if(err!=''){%> - <%= err %><%}%></label>
+                        <div class="form-block border d-flex justify-content-between">
+                            <input type="url" name="url" id="" class="form-control border-0 rounded-0"
+                                placeholder="Shorten your link..." aria-describedby="helpId" required value="<%if(urldefault){%><%= urldefault %><%}%>">
+                            <button type="submit" class="btn btn-primary border rounded-0">Shorten</button>
+                        </div>
+                        <div class="form-inline mt-2">
+                            <%- captcha %>
+                          <input type="text"
+                            class="form-control" name="type_captcha" id="" aria-describedby="helpId" placeholder="Type Captcha Here...">
+                        </div>
+                    </form>
+                    <label for="">Result</label>
+                    <div class="form-block border d-flex justify-content-between">
+                        <input readonly type="text" name="" id="result-url" class="form-control border-0 rounded-0"
+                            placeholder="Shortened your URL..." aria-describedby="helpId" value="">
+                        <i onclick="copyURL()" class="fa fa-clone icon-copy" aria-hidden="true"></i>
+                    </div>
+                    <script>
+                        var link = "<% if(url!=''){ %>" + window.location.origin + "/rd/<%= url %><%}%>";
+                        document.getElementById("result-url").value = link;
+                    </script>
+                </div>
+            </div>
+            <%if(qrcode!=''){ %><div class=" col-md-5">
+                    <div class="shorten-block qrcode wow slideInRight">
+                        <img id="qrcode-shorturl" src="<%= qrcode %>" alt="">
+                        <p class="shorten-alert">Chúc mừng! URL của bạn đã được rút gọn thành công. Bạn có thể chia sẻ
+                            nó
+                            copy liên kết bên dưới<br>Tải mã QR để chia sẻ nhanh hơn!</p>
+                    </div>
+                </div>
+                <%}%>
+            <div class="col"></div>
+        </div>
+    </div>
+    <!-- Library JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script>
+        new WOW().init();
+    </script>
+    
+</body>
+
+</html>
