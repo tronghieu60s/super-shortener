@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: '49287498358579465738',
+  secret: '43271843240247236984',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
@@ -30,7 +30,7 @@ app.use('/', indexRouter);
 
 //Mongo Database
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myproject', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/myproject', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
