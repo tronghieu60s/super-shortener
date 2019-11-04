@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             <div class="col"></div>
             <div class="col-md-6">
                 <div class="shorten-block wow <%if(qrcode==''){ %>bounceInDown<%}else{%>slideInLeft<%}%>">
-                    <form action="/shorten" method="get">
+                    <form action="/create/shorten" method="get">
                         <div class="shorten-title">Shorten a URL</div>
                         <div class="shorten-setting" data-toggle="modal" data-target="#shorten-popup"><i class="fa fa-cog" aria-hidden="true"></i></div>
                         <!-- Modal Popup Setting -->
@@ -85,7 +85,7 @@
                         <i onclick="copyURL()" class="fa fa-clone icon-copy" aria-hidden="true"></i>
                     </div>
                     <script>
-                        var link = "<% if(url!=''){ %>" + window.location.origin + "/rd/<%= url %><%}%>";
+                        var link = "<% if(url!=''){ %>" + window.location.origin + "/<%= url %><%}%>";
                         document.getElementById("result-url").value = link;
                     </script>
                 </div>
@@ -106,7 +106,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Optional JavaScript -->
-    <script src="main.js"></script>
+    <script src="/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script>
