@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var urlModel = require('../models/shortenlink');
-var QRCode = require('qrcode');
-var svgCaptcha = require('svg-captcha');
+const express = require('express');
+const router = express.Router();
+const urlModel = require('../models/shortenlink');
+const QRCode = require('qrcode');
+const svgCaptcha = require('svg-captcha');
 
+const { isEmpty, controlShortenURL } = require('./support');
 
 router.get('/', function (req, res) {
   var captcha = svgCaptcha.create({ background: "#36393f", noise: 1, width: 100 }); //https://www.npmjs.com/package/svg-captcha
@@ -12,7 +13,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:link', function (req, res) {
-  var link = req.params.link;
+  var { link } = req.params;
   urlModel.findOne({ shorten: link }, function (err, shortURL) {
     if (shortURL) {
       res.redirect(shortURL.url);
@@ -52,16 +53,6 @@ router.get('/create/shorten', function (req, res) {
   }
 })
 
-function controlShortenURL(linkMode, charLength) {
-  if (linkMode == 1) {
-    return randomCharZeroWidth(10);
-  } else if (linkMode == 2) {
-    return randomNumbers(charLength);
-  } else {
-    return randomChar(charLength);
-  }
-}
-
 /* Check URL exist */
 function urlExist(shortenURL, linkMode, charLength, cb) {
   urlModel.findOne({ shorten: shortenURL }, function (err, shortURL) {
@@ -72,40 +63,6 @@ function urlExist(shortenURL, linkMode, charLength, cb) {
       cb();
     }
   })
-}
-/* Check Obj Empty */
-function isEmpty(obj) {
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key))
-      return false;
-  }
-  return true;
-}
-
-/* Random Character, Number and Zero Width */
-function randomChar(length) {
-  var result = '';
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-function randomNumbers(num) {
-  var result = '';
-  for (let i = 0; i < num; i++) {
-    result += Math.floor(Math.random() * 10);
-  }
-  return result;
-}
-function randomCharZeroWidth(num) {
-  var zeroWidth = ['\u200c', '\u200d'];
-  var result = '';
-  for (let i = 1; i <= num; i++) {
-    result += zeroWidth[Math.floor(Math.random() * zeroWidth.length)];
-  }
-  return result;
 }
 
 module.exports = router;
